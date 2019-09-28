@@ -57,13 +57,19 @@ let Movable = function(args = {}) {
 
     // Add styles
     el(this.movableEl).css({position: 'absolute'});
-    Array.from(document.querySelector('.movable').children)
+
+    // Array.from(document.querySelector('.movable').children)
     this.movableEl.forEach(item => {
         Array.from(item.children).forEach(child => {
             console.log(child);
             child.style.pointerEvents = 'none';
         })
     })
+
+    // Disable text selection
+    function disableSelect(event) {
+        event.preventDefault();
+    }
 
     /////////////////////// Adding event listeners ///////////////////////
     // Mouse down to movable element
@@ -91,10 +97,14 @@ let Movable = function(args = {}) {
         if (options.onMouseUp) {
             options.onMouseUp(e, currentElement, 'no percent')
         }
+
+        window.addEventListener('selectstart', disableSelect);
     })
 
     // Mouse move
     document.addEventListener('mousemove', (e) => {
+        window.addEventListener('selectstart', disableSelect);
+
         if (isPressed) {
             mousePosition.x = e.clientX;
             mousePosition.y = e.clientY;
