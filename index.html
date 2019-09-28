@@ -15,21 +15,31 @@
     <div class="container border" style="height: 500px;">
         <div class="movable " style="width: 120px; height: 120px; background-color: #62a6c5; cursor: move;" ></div>
         <div class="movable " style="width: 120px; height: 120px; background-color: #12a7b5; cursor: move;" ></div>
-        <div class="movable " style="width: 120px; height: 120px; background-color: #92a6c5; cursor: move;" ></div>
+        <div class="second" style="width: 120px; height: 120px; background-color: #92a6c5; cursor: move;" ></div>
     </div>
 
     <script src="js/movable.js"></script>
 
     <script>
-        let movable = new Movable({
+        new Movable({
             movableSelector: '.movable', // Default selector
             restrict: '.container', // Default is body
             onDrag: function(e, elem, precent) {
                 elem.innerText = `${Math.floor(precent.x)}%`
             },
             x: true, // True by defautl
-            y: true, // True by default
+            y: false, // True by default
         });
+
+        new Movable({
+            movableSelector: '.second',
+            restrict: '.container', // Default is body
+            onDrag: function(e, elem, precent) {
+                elem.innerText = `${Math.floor(precent.y)}%`
+            },
+            x: false, // True by defautl
+            y: true, // True by default
+        })
     </script>
 </body>
 </html>

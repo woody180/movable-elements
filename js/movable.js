@@ -1,6 +1,6 @@
 let Movable = function(args = {}) {
     let options = {
-        movableSelector: args.hasOwnProperty('selector') ? args.selector : '.movable',
+        movableSelector: args.hasOwnProperty('movableSelector') ? args.movableSelector : '.movable',
         x: args.hasOwnProperty('x') ? args.x : true,
         y: args.hasOwnProperty('y') ? args.y : true,
         restrict: args.hasOwnProperty('restrict') ? args.restrict : null,
